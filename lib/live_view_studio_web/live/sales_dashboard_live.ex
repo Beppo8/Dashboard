@@ -4,6 +4,9 @@ defmodule LiveViewStudioWeb.SalesDashboardLive do
   alias LiveViewStudio.Sales
 
   def mount(_params, _session, socket) do
+    if connected?(socket) do
+      :timer.send_interval(1000, self(), :tick)
+    end
     socket = assign_stats(socket)
 
     {:ok, socket}
