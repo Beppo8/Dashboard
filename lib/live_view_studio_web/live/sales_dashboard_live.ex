@@ -57,6 +57,11 @@ defmodule LiveViewStudioWeb.SalesDashboardLive do
     {:noreply, socket}
   end
 
+  def handle_info(:tick, socket) do
+    socket = assign_stats(socket)
+    {:noreply, socket}
+  end
+
   defp assign_stats(socket) do
       assign(socket,
       new_orders: Sales.new_orders(),
